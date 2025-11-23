@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/dammyololade/ticket-pr-validation-action/workflows/CI/badge.svg)](https://github.com/dammyololade/ticket-pr-validation-action/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/dammyololade/ticket-pr-validation-action)
+[![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/dammyololade/ticket-pr-validation-action)
 [![Marketplace](https://img.shields.io/badge/Marketplace-Linear%20Ticket%20PR%20Validation-blue.svg)](https://github.com/marketplace/actions/linear-ticket-pr-validation)
 
 A GitHub Action that validates Pull Requests against Linear tickets and triggers assistant reviews by posting formatted comments with ticket details and acceptance criteria.
@@ -29,7 +29,7 @@ This action is available on the [GitHub Marketplace](https://github.com/marketpl
   uses: dammyololade/ticket-pr-validation-action@v1.0.1
 ```
 
-**Recommended**: Pin to a specific version (e.g., `@v1.0.2`) for stability. You can also use `@v1` to automatically get minor and patch updates, or `@main` for the latest development version (not recommended for production).
+**Recommended**: Pin to a specific version (e.g., `@v1.0.3`) for stability. You can also use `@v1` to automatically get minor and patch updates, or `@main` for the latest development version (not recommended for production).
 
 ## Usage
 
@@ -94,14 +94,14 @@ jobs:
 
 For production use, we recommend pinning to a specific version:
 
-- `@v1.0.2` - Pins to exact version (most stable)
+- `@v1.0.3` - Pins to exact version (most stable)
 - `@v1` - Gets latest v1.x.x (minor and patch updates)
 - `@main` - Latest development version (not recommended for production)
 
 Example:
 
 ```yaml
-uses: dammyololade/ticket-pr-validation-action@v1.0.2 # Recommended for production
+uses: dammyololade/ticket-pr-validation-action@v1.0.3 # Recommended for production
 ```
 
 ## Inputs
@@ -300,8 +300,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Validate PR against Linear ticket
-        uses: dammyololade/ticket-pr-validation-action@v1.0.2
+- name: Validate PR against Linear ticket
+  uses: dammyololade/ticket-pr-validation-action@v1.0.3
         with:
           linear-api-key: ${{ secrets.LINEAR_API_KEY }}
           ticket-id: ${{ inputs.ticket_id }}

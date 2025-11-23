@@ -1,6 +1,6 @@
 {
   "name": "ticket-pr-validation-action",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "GitHub Action to validate PRs against Linear tickets and trigger assistant reviews",
   "main": "dist/index.js",
   "scripts": {
