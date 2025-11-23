@@ -77,7 +77,7 @@ jobs:
         with:
           linear-api-key: ${{ secrets.LINEAR_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }} # Optional: defaults to GITHUB_TOKEN env var
-          branch-pattern: '[A-Za-z]+-\\d+' # Custom regex pattern (default: [A-Za-z]+-\d+)
+          branch-pattern: '[A-Za-z]+-[0-9]+' # Custom regex pattern (default: [A-Za-z]+-[0-9]+)
           assistant-mention: '@gemini-code-assist' # Custom assistant mention (default: @gemini-code-assist)
           ticket-id: '' # Optional: Manual override for ticket ID
           pr-number: '' # Optional: PR number override
@@ -111,7 +111,7 @@ uses: dammyololade/ticket-pr-validation-action@v1.0.3 # Recommended for producti
 | `linear-api-key`    | Linear API key                                      | Yes      | -                      |
 | `github-token`      | GitHub token (optional, defaults to `GITHUB_TOKEN`) | No       | `GITHUB_TOKEN` env var |
 | `ticket-id`         | Manual override for ticket ID                       | No       | -                      |
-| `branch-pattern`    | Regex pattern to extract ticket ID from branch name | No       | `[A-Za-z]+-\\d+`       |
+| `branch-pattern`    | Regex pattern to extract ticket ID from branch name | No       | `[A-Za-z]+-[0-9]+`     |
 | `pr-number`         | PR number override                                  | No       | From event context     |
 | `assistant-mention` | Assistant mention for code review                   | No       | `@gemini-code-assist`  |
 | `dry-run`           | Dry run mode - log output without posting comment   | No       | `false`                |
@@ -170,7 +170,7 @@ The action uses `GITHUB_TOKEN` by default (automatically provided by GitHub Acti
 
 ## Branch Pattern Examples
 
-The default pattern `[A-Za-z]+-\\d+` matches ticket IDs like:
+The default pattern `[A-Za-z]+-[0-9]+` matches ticket IDs like:
 
 - `PROJ-123`
 - `ABC-456`
@@ -178,10 +178,10 @@ The default pattern `[A-Za-z]+-\\d+` matches ticket IDs like:
 
 For custom patterns:
 
-- `TICKET-\\d+` - Matches `TICKET-123`
-- `[A-Z]{2,}-\\d+` - Matches at least 2 uppercase letters followed by digits
+- `TICKET-[0-9]+` - Matches `TICKET-123`
+- `[A-Z]{2,}-[0-9]+` - Matches at least 2 uppercase letters followed by digits
 
-**Note**: In YAML, you need to escape backslashes, so `\d` becomes `\\d`.
+**Note**: For digit matching, use `[0-9]+` instead of `\d+` to avoid escaping issues in YAML.
 
 ## Troubleshooting
 

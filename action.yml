@@ -14,9 +14,9 @@ inputs:
     description: 'Manual override for ticket ID'
     required: false
   branch-pattern:
-    description: 'Regex pattern to extract ticket ID from branch name (default: [A-Za-z]+-\\d+)'
+    description: 'Regex pattern to extract ticket ID from branch name (default: [A-Za-z]+-[0-9]+)'
     required: false
-    default: '[A-Za-z]+-\\d+'
+    default: '[A-Za-z]+-[0-9]+'
   pr-number:
     description: 'PR number override (optional)'
     required: false
