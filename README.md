@@ -1,8 +1,8 @@
 # Linear Ticket PR Validation Action
 
-[![CI](https://github.com/YOUR_USERNAME/ticket-pr-validation-action/workflows/CI/badge.svg)](https://github.com/YOUR_USERNAME/ticket-pr-validation-action/actions)
+[![CI](https://github.com/dammyololade/ticket-pr-validation-action/workflows/CI/badge.svg)](https://github.com/dammyololade/ticket-pr-validation-action/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/YOUR_USERNAME/ticket-pr-validation-action)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dammyololade/ticket-pr-validation-action)
 
 A GitHub Action that validates Pull Requests against Linear tickets and triggers assistant reviews by posting formatted comments with ticket details and acceptance criteria.
 
