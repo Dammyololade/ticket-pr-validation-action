@@ -73,7 +73,7 @@ jobs:
 
       - name: Validate PR against Linear ticket
         id: validate
-        uses: dammyololade/ticket-pr-validation-action@v1.0.1
+        uses: dammyololade/ticket-pr-validation-action@v1.0.3
         with:
           linear-api-key: ${{ secrets.LINEAR_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }} # Optional: defaults to GITHUB_TOKEN env var
