@@ -26,7 +26,7 @@ This action is available on the [GitHub Marketplace](https://github.com/marketpl
 
 ```yaml
 - name: Validate PR against Linear ticket
-  uses: dammyololade/ticket-pr-validation-action@v1.0.1
+  uses: dammyololade/ticket-pr-validation-action@v1.0.3
 ```
 
 **Recommended**: Pin to a specific version (e.g., `@v1.0.3`) for stability. You can also use `@v1` to automatically get minor and patch updates, or `@main` for the latest development version (not recommended for production).
@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v4
 
 - name: Validate PR against Linear ticket
-  uses: dammyololade/ticket-pr-validation-action@v1.0.1
+  uses: dammyololade/ticket-pr-validation-action@v1.0.3
         with:
           linear-api-key: ${{ secrets.LINEAR_API_KEY }}
 ```
