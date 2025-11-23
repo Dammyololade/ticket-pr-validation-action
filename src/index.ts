@@ -9,7 +9,7 @@ import { buildComment, buildErrorComment } from './comment-builder';
  * Parses action inputs
  */
 function parseInputs(): ActionInputs {
-  // Fallback to process.env for local testing when core.getInput doesn't work
+  // Fallback to process.env when core.getInput doesn't work (e.g., local testing or certain environments)
   const linearApiKey =
     core.getInput('linear-api-key', { required: false }) ||
     process.env.INPUT_LINEAR_API_KEY ||
@@ -28,7 +28,7 @@ function parseInputs(): ActionInputs {
     );
   }
 
-  // Fallback to process.env for local testing
+  // Fallback to process.env when core.getInput doesn't work
   const ticketId =
     core.getInput('ticket-id', { required: false }) || process.env.INPUT_TICKET_ID || undefined;
   const branchPattern =

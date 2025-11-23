@@ -1,5 +1,5 @@
 name: 'Linear Ticket PR Validation'
-description: 'Validates PRs against Linear tickets and triggers assistant reviews'
+description: 'Automatically validates Pull Requests against Linear tickets, extracts acceptance criteria, and posts formatted comments to trigger AI-assisted code reviews. Supports custom branch patterns, dry-run mode, and flexible ticket ID detection.'
 branding:
   icon: 'check-circle'
   color: 'blue'

@@ -2,9 +2,12 @@
 
 [![CI](https://github.com/dammyololade/ticket-pr-validation-action/workflows/CI/badge.svg)](https://github.com/dammyololade/ticket-pr-validation-action/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dammyololade/ticket-pr-validation-action)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/dammyololade/ticket-pr-validation-action)
+[![Marketplace](https://img.shields.io/badge/Marketplace-Linear%20Ticket%20PR%20Validation-blue.svg)](https://github.com/marketplace/actions/linear-ticket-pr-validation)
 
 A GitHub Action that validates Pull Requests against Linear tickets and triggers assistant reviews by posting formatted comments with ticket details and acceptance criteria.
+
+**Available on [GitHub Marketplace](https://github.com/marketplace/actions/linear-ticket-pr-validation)**
 
 ## Features
 
@@ -14,6 +17,19 @@ A GitHub Action that validates Pull Requests against Linear tickets and triggers
 - 💬 Posts formatted comments with ticket information and review requests
 - 🧪 Supports dry-run mode for testing
 - ⚠️ Graceful error handling with informative error comments
+
+## Installation
+
+### From GitHub Marketplace
+
+This action is available on the [GitHub Marketplace](https://github.com/marketplace/actions/linear-ticket-pr-validation). You can install it directly in your workflow:
+
+```yaml
+- name: Validate PR against Linear ticket
+  uses: dammyololade/ticket-pr-validation-action@v1.0.1
+```
+
+**Recommended**: Pin to a specific version (e.g., `@v1.0.1`) for stability. You can also use `@v1` to automatically get minor and patch updates, or `@main` for the latest development version (not recommended for production).
 
 ## Usage
 
@@ -33,8 +49,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Validate PR against Linear ticket
-        uses: ./path/to/action
+- name: Validate PR against Linear ticket
+  uses: dammyololade/ticket-pr-validation-action@v1.0.1
         with:
           linear-api-key: ${{ secrets.LINEAR_API_KEY }}
 ```
@@ -57,7 +73,7 @@ jobs:
 
       - name: Validate PR against Linear ticket
         id: validate
-        uses: ./path/to/action
+        uses: dammyololade/ticket-pr-validation-action@v1.0.1
         with:
           linear-api-key: ${{ secrets.LINEAR_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }} # Optional: defaults to GITHUB_TOKEN env var
@@ -72,6 +88,20 @@ jobs:
           echo "Ticket ID: ${{ steps.validate.outputs.ticket-id }}"
           echo "Comment URL: ${{ steps.validate.outputs.comment-url }}"
           echo "Success: ${{ steps.validate.outputs.success }}"
+```
+
+### Version Pinning
+
+For production use, we recommend pinning to a specific version:
+
+- `@v1.0.1` - Pins to exact version (most stable)
+- `@v1` - Gets latest v1.x.x (minor and patch updates)
+- `@main` - Latest development version (not recommended for production)
+
+Example:
+
+```yaml
+uses: dammyololade/ticket-pr-validation-action@v1.0.1 # Recommended for production
 ```
 
 ## Inputs
@@ -191,6 +221,8 @@ If no acceptance criteria are found under expected headings, the action will use
 
 ## Testing
 
+> **Note for Users**: If you're using this action from the Marketplace, you don't need to run these tests. These testing instructions are for developers contributing to the action.
+
 ### Unit Tests
 
 Run the test suite with mocked APIs (no credentials needed):
@@ -201,7 +233,7 @@ npm test
 
 ### Testing with Real APIs
 
-Test the action with real Linear and GitHub APIs using the provided script:
+For action developers: Test the action with real Linear and GitHub APIs using the provided script:
 
 ```bash
 export LINEAR_API_KEY="your-linear-api-key"
@@ -219,7 +251,7 @@ export GITHUB_TOKEN="your-github-token"
 
 ### Testing Locally with Act
 
-Test the action locally using `act` to simulate the GitHub Actions environment:
+For action developers: Test the action locally using `act` to simulate the GitHub Actions environment:
 
 ```bash
 export LINEAR_API_KEY="your-linear-api-key"
@@ -240,9 +272,11 @@ export GITHUB_TOKEN="your-github-token"
 
 **Note:** Repository owner and name are required because `github.context.repo` needs to know which repository to work with.
 
-### Testing in GitHub Actions
+### Testing in Your Workflow
 
-1. Create a test workflow file (e.g., `.github/workflows/test.yml`)
+To test the action in your own repository before using it in production:
+
+1. Add the action to a test workflow
 2. Use `dry-run: 'true'` to test without posting comments
 3. Check the action logs to verify the output
 4. Set `dry-run: 'false'` to actually post comments
@@ -250,7 +284,7 @@ export GITHUB_TOKEN="your-github-token"
 **Example test workflow:**
 
 ```yaml
-name: Test Action
+name: Test Linear Ticket Validation
 
 on:
   workflow_dispatch:
@@ -266,20 +300,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build action
-        run: npm run build
-
-      - name: Test action
-        uses: ./
+      - name: Validate PR against Linear ticket
+        uses: dammyololade/ticket-pr-validation-action@v1.0.1
         with:
           linear-api-key: ${{ secrets.LINEAR_API_KEY }}
           ticket-id: ${{ inputs.ticket_id }}
@@ -326,6 +348,19 @@ See [SECURITY.md](SECURITY.md) for information about reporting security vulnerab
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Support
+
+- 📖 [Documentation](https://github.com/dammyololade/ticket-pr-validation-action#readme)
+- 🐛 [Report a Bug](https://github.com/dammyololade/ticket-pr-validation-action/issues)
+- 💬 [GitHub Discussions](https://github.com/dammyololade/ticket-pr-validation-action/discussions)
+- 🛒 [GitHub Marketplace](https://github.com/marketplace/actions/linear-ticket-pr-validation)
 
 ## License
 

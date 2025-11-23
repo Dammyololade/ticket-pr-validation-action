@@ -1,7 +1,7 @@
 name: Test Action with Act
 
-# This workflow is specifically for testing with 'act' locally
-# It simulates how users will use the action
+# This workflow is for local testing with 'act' (GitHub Actions local runner)
+# It allows developers to test the action locally before pushing changes
 
 on:
   workflow_dispatch:
