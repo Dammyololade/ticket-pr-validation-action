@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Build output (generated files shouldn't be formatted)
+dist/
+
+# Logs
+*.log
+
+# Test coverage
+coverage/
+.nyc_output/
+
