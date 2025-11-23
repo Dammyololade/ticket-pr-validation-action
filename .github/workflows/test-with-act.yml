@@ -1,0 +1,64 @@
+name: Test Action with Act
+
+# This workflow is specifically for testing with 'act' locally
+# It simulates how users will use the action
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticket_id:
+        description: 'Linear ticket ID (e.g., PROJ-155)'
+        required: true
+        type: string
+      pr_number:
+        description: 'PR number to test on'
+        required: true
+        type: string
+      repo_owner:
+        description: 'Repository owner (e.g., REPO_OWNER)'
+        required: true
+        type: string
+      repo_name:
+        description: 'Repository name (e.g., REPO_NAME)'
+        required: true
+        type: string
+      dry_run:
+        description: 'Run in dry-run mode (no comment posted)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    container:
+      # Use a Node.js image to avoid downloading Node.js
+      image: node:20-slim
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build action
+        run: npm run build
+
+      - name: Validate PR against Linear ticket
+        uses: ./
+        id: validate
+        env:
+          # Set GITHUB_REPOSITORY so github.context.repo works correctly
+          GITHUB_REPOSITORY: ${{ inputs.repo_owner }}/${{ inputs.repo_name }}
+        with:
+          linear-api-key: ${{ secrets.LINEAR_API_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          ticket-id: ${{ inputs.ticket_id }}
+          pr-number: ${{ inputs.pr_number }}
+          dry-run: ${{ inputs.dry_run }}
+
+      - name: Show outputs
+        run: |
+          echo "Ticket ID: ${{ steps.validate.outputs.ticket-id }}"
+          echo "Comment URL: ${{ steps.validate.outputs.comment-url }}"
+          echo "Success: ${{ steps.validate.outputs.success }}"

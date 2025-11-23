@@ -1,0 +1,40 @@
+name: 'Linear Ticket PR Validation'
+description: 'Validates PRs against Linear tickets and triggers assistant reviews'
+branding:
+  icon: 'check-circle'
+  color: 'blue'
+inputs:
+  linear-api-key:
+    description: 'Linear API key (required)'
+    required: true
+  github-token:
+    description: 'GitHub token (optional, defaults to GITHUB_TOKEN env var)'
+    required: false
+  ticket-id:
+    description: 'Manual override for ticket ID'
+    required: false
+  branch-pattern:
+    description: 'Regex pattern to extract ticket ID from branch name (default: [A-Za-z]+-\\d+)'
+    required: false
+    default: '[A-Za-z]+-\\d+'
+  pr-number:
+    description: 'PR number override (optional)'
+    required: false
+  assistant-mention:
+    description: 'Assistant mention for code review (default: @gemini-code-assist)'
+    required: false
+    default: '@gemini-code-assist'
+  dry-run:
+    description: 'Dry run mode - log output without posting comment'
+    required: false
+    default: 'false'
+outputs:
+  ticket-id:
+    description: 'Detected or provided ticket ID'
+  comment-url:
+    description: 'URL of the posted comment (or placeholder in dry-run)'
+  success:
+    description: 'Whether the action completed successfully'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
